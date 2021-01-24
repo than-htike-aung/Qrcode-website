@@ -22,7 +22,7 @@ class User extends Model
     use SoftDeletes;
 
     public $table = 'users';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -71,5 +71,26 @@ class User extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+    /**
+     * Get the transactions for the user
+     */
+
+    public function transactions(){
+        return $this->hasMany('App\Models\Transaction');
+    }
+
+
+    public function role(){
+        return $this->belongsTo('App\Models\Role');
+    }
+
+    public function qrcodes(){
+        return $this->hasMany('App\Models\Qrcode');
+    }
+
+    public function account(){
+        return $this->hasOne('App\Models\Account');
+    }
+
+
 }

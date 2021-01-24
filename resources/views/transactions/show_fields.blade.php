@@ -1,20 +1,36 @@
+<!-- Qrcode Id Field -->
+<div class="col-sm-12">
+    {!! Form::label('qrcode_id', 'Product Name:') !!}
+    <p>
+        <a href="/qrcodes/{!! $transaction->qrcode['id'] !!}">
+            <b>
+                {{ $transaction->qrcode['product_name'] }}
+            </b>
+        </a>
+    </p>
+</div>
+
 <!-- User Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{{ $transaction->user_id }}</p>
+    {!! Form::label('user_id', 'Buyer Name:') !!}
+    <p>
+        <a href="/users/{{$transaction->user['id']}}">
+            {{ $transaction->user['name'] }} | {{$transaction->user['email']}}
+        </a>
+    </p>
 </div>
 
 <!-- Qrcode Owner Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('qrcode_owner_id', 'Qrcode Owner Id:') !!}
-    <p>{{ $transaction->qrcode_owner_id }}</p>
+    {!! Form::label('qrcode_owner_id', 'Qrcode Owner Name:') !!}
+    <p>
+        <a href="/users/{{$transaction->qrcode_owner['id']}}">
+            {{ $transaction->qrcode_owner['name'] }}
+        </a>
+    </p>
 </div>
 
-<!-- Qrcode Id Field -->
-<div class="col-sm-12">
-    {!! Form::label('qrcode_id', 'Qrcode Id:') !!}
-    <p>{{ $transaction->qrcode_id }}</p>
-</div>
+
 
 <!-- Payment Method Field -->
 <div class="col-sm-12">
@@ -39,4 +55,21 @@
     {!! Form::label('status', 'Status:') !!}
     <p>{{ $transaction->status }}</p>
 </div>
+
+<!-- Created At Field -->
+<div class="col-sm-12">
+    {!! Form::label('created_at', 'Created At:') !!}
+    <p>
+        {{$transaction->created_at->format('D d, M, Y h:i')}}
+    </p>
+</div>
+
+<!-- Updated At Field -->
+<div class="col-sm-12">
+    {!! Form::label('updated_at', 'Updated At:') !!}
+    <p>
+        {{$transaction->updated_at->format('D d, M, Y h:i')}}
+    </p>
+</div>
+
 

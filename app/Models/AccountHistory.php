@@ -6,18 +6,20 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Role
+ * Class AccountHistory
  * @package App\Models
- * @version January 10, 2021, 4:27 pm UTC
+ * @version January 21, 2021, 7:06 am UTC
  *
- * @property string $name
+ * @property integer $account_id
+ * @property integer $user_id
+ * @property string $message
  */
-class Role extends Model
+class AccountHistory extends Model
 {
     use SoftDeletes;
 
-    public $table = 'roles';
-
+    public $table = 'account_histories';
+    
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -27,7 +29,9 @@ class Role extends Model
 
 
     public $fillable = [
-        'name'
+        'account_id',
+        'user_id',
+        'message'
     ];
 
     /**
@@ -37,7 +41,9 @@ class Role extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string'
+        'account_id' => 'integer',
+        'user_id' => 'integer',
+        'message' => 'string'
     ];
 
     /**
@@ -46,14 +52,13 @@ class Role extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required|string|max:255',
+        'account_id' => 'required|integer',
+        'user_id' => 'required|integer',
+        'message' => 'required|string|max:255',
+        'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
     ];
 
-    public function users(){
-        return $this->hasMany('App\Models\User');
-    }
-
-
+    
 }

@@ -38,6 +38,22 @@ Route::group(['middleware' => 'auth'], function (){
     Route::resource('transactions', 'TransactionController');
 
     Route::resource('users', 'UserController');
+
+    Route::resource('accounts', 'AccountController');
+
+    Route::resource('accountHistories', 'AccountHistoryController');
+
+    //only moderators and admins
+    Route::group(['middleware' => 'checkmoderator'], function () {
+        Route::get('/users', 'UserController@index')->name('users.index');
+    });
+
+
+
+    //only admins can access this
+    Route::resource('roles', 'RoleController')->middleware('checkadmin');
 });
+
+
 
 

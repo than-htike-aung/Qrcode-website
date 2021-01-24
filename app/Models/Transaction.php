@@ -23,7 +23,7 @@ class Transaction extends Model
     use SoftDeletes;
 
     public $table = 'transactions';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -75,5 +75,19 @@ class Transaction extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+    /**
+     * Get the qrcode that owns the transaction
+     */
+    public function qrcode(){
+        return $this->belongsTo('App\Models\Qrcode');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function qrcode_owner(){
+        return $this->belongsTo('App\Models\User', 'qrcode_owner_id');
+    }
+
 }

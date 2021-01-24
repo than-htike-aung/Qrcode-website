@@ -5,12 +5,19 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Role : {{ $role->name }}</h1>
+                    <h1>Account : {{ $account->id }}
+                        <small>
+                            @if($account->applied_for_payout == 1)
+                                Payout request pending
+
+                            @endif
+                        </small>
+                    </h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-primary float-right"
-                       href="{{ route('roles.edit', [$role->id]) }}">
-                        Edit Role
+                    <a class="btn btn-default float-right"
+                       href="{{ route('accounts.index') }}">
+                        Back
                     </a>
                 </div>
             </div>
@@ -22,7 +29,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    @include('roles.show_fields')
+                    @include('accounts.show_fields')
                 </div>
             </div>
 

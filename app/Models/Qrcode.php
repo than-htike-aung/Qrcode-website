@@ -84,5 +84,13 @@ class Qrcode extends Model
         'updated_at' => 'nullable'
     ];
 
+    /**
+     * Get the transactions for the qrcode
+     */
+
+    public function transactions(){
+        return $this->hasMany('App\Models\Transaction');
+    }
+
 
 }

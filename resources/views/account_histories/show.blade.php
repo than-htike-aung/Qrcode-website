@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Role : {{ $role->name }}</h1>
+                    <h1>Account History Details</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-primary float-right"
-                       href="{{ route('roles.edit', [$role->id]) }}">
-                        Edit Role
+                    <a class="btn btn-default float-right"
+                       href="{{ route('accountHistories.index') }}">
+                        Back
                     </a>
                 </div>
             </div>
@@ -22,7 +22,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    @include('roles.show_fields')
+                    @include('account_histories.show_fields')
                 </div>
             </div>
 

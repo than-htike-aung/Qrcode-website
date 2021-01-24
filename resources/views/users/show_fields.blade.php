@@ -6,8 +6,8 @@
 
 <!-- Role Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('role_id', 'Role Id:') !!}
-    <p>{{ $user->role_id }}</p>
+    {!! Form::label('role_id', 'User level:') !!}
+    <p>{{ $user->role['name'] }}</p>
 </div>
 
 <!-- Email Field -->
@@ -16,21 +16,26 @@
     <p>{{ $user->email }}</p>
 </div>
 
-<!-- Email Verified At Field -->
+
+
+<!-- Created At Field -->
 <div class="col-sm-12">
-    {!! Form::label('email_verified_at', 'Email Verified At:') !!}
-    <p>{{ $user->email_verified_at }}</p>
+    {!! Form::label('created_at', 'Joined:') !!}
+    <p>{{ $user->created_at->format('D d, M, Y h:i') }}</p>
 </div>
 
-<!-- Password Field -->
-<div class="col-sm-12">
-    {!! Form::label('password', 'Password:') !!}
-    <p>{{ $user->password }}</p>
-</div>
+@if($user->id == Auth::user()->id || Auth::user()->role_id < 3)
 
-<!-- Remember Token Field -->
-<div class="col-sm-12">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    <p>{{ $user->remember_token }}</p>
-</div>
 
+    <div class="col-xs-12">
+        <h3 class="text-center text-info">Transactions</h3>
+        @include('transactions.table')
+    </div>
+
+    <div class="col-xs-12">
+        <h3 class="text-center text-info">Qrcodes</h3>
+        @include('qrcodes.table')
+    </div>
+
+
+@endif
